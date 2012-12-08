@@ -1,0 +1,4 @@
+SSE
+===
+
+Strumpy Shader Editor
