@@ -1,2 +1,3 @@
-ShaderEditor/Assets/StrumpyShaderEditor/Editor/obj/Debug/StrumpySE.csproj.FileListAbsolute.txt
-ShaderEditor/Assets/StrumpyShaderEditor/Editor/obj/Release/StrumpySE.csproj.FileListAbsolute.txt
+ShaderEditor/Assets/StrumpyShaderEditor/Editor/obj/
+Release
+/*.suo
