@@ -262,7 +262,12 @@ namespace StrumpyShaderEditor
 			//Load graph
 			if( _shouldLoadGraph )
 			{
-				var path = string.IsNullOrEmpty(_overrideLoadPath) ? EditorUtility.OpenFilePanel("Load shader graph...", _graphsDir, "sgraph") : _overrideLoadPath;
+				var loadDir = _graphsDir;
+
+				if(!String.IsNullOrEmpty(_lastGraphPath))
+					loadDir = _lastGraphPath;
+
+				var path = string.IsNullOrEmpty(_overrideLoadPath) ? EditorUtility.OpenFilePanel("Load shader graph...", loadDir, "sgraph") : _overrideLoadPath;
 				bool didLoad = false;
 						
 				if (!string.IsNullOrEmpty(path))
@@ -661,30 +666,29 @@ namespace StrumpyShaderEditor
 				break;
 			}
 			case FileMenuOptions.ExportGraph:
-			{
-				if( !String.IsNullOrEmpty(_lastExportPath) )
-				{
-					_shouldExportShader = true;
-					_quickExport = true;
-				}
-				break;
-			}
 			case FileMenuOptions.ExportAsGraph:
 			{
 				_shouldExportShader = true;
-				break;
-			}
-			case FileMenuOptions.SaveAsGraph:
-			{
-				_shouldSaveGraph = true;
+				if (!String.IsNullOrEmpty(_lastExportPath) && 
+					option == FileMenuOptions.ExportGraph)
+				{
+					_quickExport = true;
+				}
+
+				if (!String.IsNullOrEmpty(_lastGraphPath))
+				{
+					_shouldSaveGraph = true;
+					_quickSaving = true;
+				}
 				break;
 			}
 			case FileMenuOptions.SaveGraph:
+			case FileMenuOptions.SaveAsGraph:
 			{
-				
-				if( !String.IsNullOrEmpty(_lastGraphPath) )
+				_shouldSaveGraph = true;
+				if (!String.IsNullOrEmpty(_lastGraphPath) &&
+					option == FileMenuOptions.SaveGraph)
 				{
-					_shouldSaveGraph = true;
 					_quickSaving = true;
 				}
 				break;
@@ -787,7 +791,7 @@ namespace StrumpyShaderEditor
 				{
 					menu.AddItem( new GUIContent( "Export" ), false, FileMenuSelect, FileMenuOptions.ExportGraph );
 				}
-				menu.AddItem( new GUIContent( "Export As" ), false, FileMenuSelect, FileMenuOptions.ExportAsGraph );
+				menu.AddItem( new GUIContent( "Export As..." ), false, FileMenuSelect, FileMenuOptions.ExportAsGraph );
 				menu.ShowAsContext();
 				break;
 			}
@@ -831,20 +835,27 @@ namespace StrumpyShaderEditor
 		{
 			switch( Event.current.type )
 			{
-			// Texel - Handle DragAndDrop 
-			case EventType.DragExited : {
+			case EventType.DragUpdated:
+			case EventType.DragPerform :
+			{
 				if (position.Contains(_currentMousePosition)) {
 					var path = DragAndDrop.paths[0];
-					if (path.EndsWith("sgraph") ){
-						_shouldLoadGraph = true;
-						_overrideLoadPath = path;
-						_lastGraphPath = path;
-						_markDirtyOnLoad = true;
+					if (path.EndsWith("sgraph"))
+					{
+						DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
+						if (Event.current.type == EventType.dragPerform)
+						{
+							_shouldLoadGraph = true;
+							_overrideLoadPath = path;
+							_lastGraphPath = path;
+							_markDirtyOnLoad = true;
+						}
 						Event.current.Use();
 					}
 				}
 				break;
 			}
+
 			case EventType.MouseDown:
 			{
 				if (Event.current.button == 0 )
