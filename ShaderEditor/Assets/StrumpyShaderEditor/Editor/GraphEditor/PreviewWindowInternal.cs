@@ -217,8 +217,7 @@ namespace StrumpyShaderEditor
 			}
 			GUILayout.EndHorizontal();
 		}
-		
-		private int _selectedMeshIndex;
+
 		private bool _drawBackground;
 		private DateTime _lastRenderTime = DateTime.Now;
 		

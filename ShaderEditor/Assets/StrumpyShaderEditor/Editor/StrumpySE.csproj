@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{10F97AB6-D5B1-4B8B-AB30-BE995F9AEB9C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StrumpyShaderEditor</RootNamespace>
+    <AssemblyName>StrumpyShaderEditor</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.XML" />
+    <Reference Include="UnityEditor">
+      <HintPath>F:\Unity4\Editor\Data\Managed\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>F:\Unity4\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>F:\Unity4\Editor\Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomGUI\PopupMenu.cs" />
+    <Compile Include="GraphEditor\CircularReferenceException.cs" />
+    <Compile Include="GraphEditor\EditorExtensions.cs" />
+    <Compile Include="GraphEditor\InstructionCounter.cs" />
+    <Compile Include="GraphEditor\NodeDrawer.cs" />
+    <Compile Include="GraphEditor\NodeEditor.cs" />
+    <Compile Include="GraphEditor\PreviewRenderer.cs" />
+    <Compile Include="GraphEditor\PreviewWindowInternal.cs" />
+    <Compile Include="Graph\Graphs\PixelShaderGraph.cs" />
+    <Compile Include="Graph\Graphs\ShaderGraph.cs" />
+    <Compile Include="Graph\Graphs\SimpleLightingShaderGraph.cs" />
+    <Compile Include="Graph\Graphs\SubGraph.cs" />
+    <Compile Include="Graph\Graphs\SubGraphType.cs" />
+    <Compile Include="Graph\Graphs\VertexShaderGraph.cs" />
+    <Compile Include="Graph\Nodes\Channels\Channel.cs" />
+    <Compile Include="Graph\Nodes\Channels\ChannelQueryResult.cs" />
+    <Compile Include="Graph\Nodes\Channels\ChannelReference.cs" />
+    <Compile Include="Graph\Nodes\Channels\InputChannelReference.cs" />
+    <Compile Include="Graph\Nodes\Channels\Input\Float4InputChannel.cs" />
+    <Compile Include="Graph\Nodes\Channels\Input\InputChannel.cs" />
+    <Compile Include="Graph\Nodes\Channels\Input\MatrixInputChannel.cs" />
+    <Compile Include="Graph\Nodes\Channels\Input\Sampler2DInputChannel.cs" />
+    <Compile Include="Graph\Nodes\Channels\Input\SamplerCubeInputChannel.cs" />
+    <Compile Include="Graph\Nodes\Channels\OutputChannelReference.cs" />
+    <Compile Include="Graph\Nodes\Channels\Output\Float4OutputChannel.cs" />
+    <Compile Include="Graph\Nodes\Channels\Output\MatrixOutputChannel.cs" />
+    <Compile Include="Graph\Nodes\Channels\Output\OutputChannel.cs" />
+    <Compile Include="Graph\Nodes\Channels\Output\Sampler2DOutputChannel.cs" />
+    <Compile Include="Graph\Nodes\Channels\Output\SamplerCubeOutputChannel.cs" />
+    <Compile Include="Graph\Nodes\Constants\Float4ConstNode.cs" />
+    <Compile Include="Graph\Nodes\Constants\FloatConstNode.cs" />
+    <Compile Include="Graph\Nodes\Constants\LumConstNode.cs" />
+    <Compile Include="Graph\Nodes\Constants\OneNode.cs" />
+    <Compile Include="Graph\Nodes\Constants\PINode.cs" />
+    <Compile Include="Graph\Nodes\Constants\RPINode.cs" />
+    <Compile Include="Graph\Nodes\Constants\ZeroNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\AbsNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\ACosNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\ASinNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\ATan2Node.cs" />
+    <Compile Include="Graph\Nodes\Functions\ATanNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\ClampNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\CoshNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\CosNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\DistanceNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\FresnelNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\FunctionOneInput.cs" />
+    <Compile Include="Graph\Nodes\Functions\FunctionThreeInput.cs" />
+    <Compile Include="Graph\Nodes\Functions\FunctionTwoInput.cs" />
+    <Compile Include="Graph\Nodes\Functions\IFunction.cs" />
+    <Compile Include="Graph\Nodes\Functions\IsFiniteNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\IsInfNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\IsNanNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\LengthNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\LerpNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\Log10Node.cs" />
+    <Compile Include="Graph\Nodes\Functions\Log2Node.cs" />
+    <Compile Include="Graph\Nodes\Functions\LogNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\LuminanceNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\MaskNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\MergeNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\NormalizeNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\ParallaxNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\PowNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\ReflectNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\RoundNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\SaturateNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\SinhNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\SinNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\SmoothStepNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\SplatAlphaNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\SplatNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\SplitNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\StepNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\SwizzleNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\TanhNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\TanNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\Tex2DNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\Tex2DNormalNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\TexCubeNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\TrunkNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\UnpackNormalNode.cs" />
+    <Compile Include="Graph\Nodes\Functions\UVPanNode.cs" />
+    <Compile Include="Graph\Nodes\GraphMasterNodes\LightingOutputMasterNode.cs" />
+    <Compile Include="Graph\Nodes\GraphMasterNodes\ShaderMasterNode.cs" />
+    <Compile Include="Graph\Nodes\GraphMasterNodes\VertexOutputMasterNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\CosTimeNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\FullUV1.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\FullUV2.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\GrabSampler.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\InputNodeInterfaces\IFieldInput.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\InputNodeInterfaces\IPropertyInput.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\InputNodeInterfaces\IProxyOnSave.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\InputNodeInterfaces\IStructInput.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\LightingInputNodes\LightColorNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\LightingInputNodes\LightingAlbedoNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\LightingInputNodes\LightingAlphaNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\LightingInputNodes\LightingCustomNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\LightingInputNodes\LightingEmissionNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\LightingInputNodes\LightingGlossNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\LightingInputNodes\LightingNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\LightingInputNodes\LightingNormalNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\LightingInputNodes\LightingSpecularNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\MeshUV.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\NormalizedScreenPositionNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\Object2World.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\PropertyInputNodes\ColorNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\PropertyInputNodes\Float4Node.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\PropertyInputNodes\FloatNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\PropertyInputNodes\InputNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\PropertyInputNodes\MatrixNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\PropertyInputNodes\RangeNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\PropertyInputNodes\Sampled2DNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\PropertyInputNodes\Sampler2DNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\PropertyInputNodes\SamplerCubeNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\PropertyInputNodes\SimpleSampler2DNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\ScreenDepthDifferenceNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\ScreenDepthNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\ScreenPositionNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\SimpleWorldReflectionNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\SinTimeNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\TimeNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\VertexColorNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\VertexInputNodes\VertexInColorNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\VertexInputNodes\VertexNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\VertexInputNodes\VertexNormalNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\VertexInputNodes\VertexPositionNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\VertexInputNodes\VertexTangentNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\VertexInputNodes\VertexUV2Node.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\VertexInputNodes\VertexUVNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\ViewDirectionNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\World2Object.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\WorldNormalNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\WorldPositionNode.cs" />
+    <Compile Include="Graph\Nodes\InputNodes\WorldReflectionNode.cs" />
+    <Compile Include="Graph\Nodes\IResultCacheNode.cs" />
+    <Compile Include="Graph\Nodes\Node.cs" />
+    <Compile Include="Graph\Nodes\NodeMetaData.cs" />
+    <Compile Include="Graph\Nodes\NodeState.cs" />
+    <Compile Include="Graph\Nodes\Operations\AddNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\AllNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\AnyNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\CeilNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\CrossNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\DegreesNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\DivideNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\DotNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\Exp2Node.cs" />
+    <Compile Include="Graph\Nodes\Operations\ExpNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\FloorNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\FracNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\MaxNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\MinNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\MinusXNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\MultiplyNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\MxMNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\MxVNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\OneMinusNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\Operation.cs" />
+    <Compile Include="Graph\Nodes\Operations\RadiansNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\ReferenceCrossNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\RSqrtNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\SignNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\SqrtNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\SubtractNode.cs" />
+    <Compile Include="Graph\Nodes\Operations\VxMNode.cs" />
+    <Compile Include="Graph\Nodes\PureComment.cs" />
+    <Compile Include="Graph\Nodes\RootNode.cs" />
+    <Compile Include="Graph\Properties\ColorProperty.cs" />
+    <Compile Include="Graph\Properties\DefaultTextureType.cs" />
+    <Compile Include="Graph\Properties\Float4Property.cs" />
+    <Compile Include="Graph\Properties\FloatProperty.cs" />
+    <Compile Include="Graph\Properties\MatrixProperty.cs" />
+    <Compile Include="Graph\Properties\RangeProperty.cs" />
+    <Compile Include="Graph\Properties\ShaderInputs.cs" />
+    <Compile Include="Graph\Properties\ShaderProperty.cs" />
+    <Compile Include="Graph\Properties\Texture2DProperty.cs" />
+    <Compile Include="Graph\Properties\TextureCubeProperty.cs" />
+    <Compile Include="Graph\Settings\BlendingMode.cs" />
+    <Compile Include="Graph\Settings\BlendingType.cs" />
+    <Compile Include="Graph\Settings\CullMode.cs" />
+    <Compile Include="Graph\Settings\ExcludePath.cs" />
+    <Compile Include="Graph\Settings\FogMode.cs" />
+    <Compile Include="Graph\Settings\Queue.cs" />
+    <Compile Include="Graph\Settings\RenderType.cs" />
+    <Compile Include="Graph\Settings\ShaderSettings.cs" />
+    <Compile Include="Graph\Settings\ShaderTarget.cs" />
+    <Compile Include="Graph\Settings\ZTest.cs" />
+    <Compile Include="Graph\Settings\ZWrite.cs" />
+    <Compile Include="Graph\Types\EditorBool.cs" />
+    <Compile Include="Graph\Types\EditorColor.cs" />
+    <Compile Include="Graph\Types\EditorFloat.cs" />
+    <Compile Include="Graph\Types\EditorFloat2.cs" />
+    <Compile Include="Graph\Types\EditorFloat3.cs" />
+    <Compile Include="Graph\Types\EditorFloat4.cs" />
+    <Compile Include="Graph\Types\EditorGroup.cs" />
+    <Compile Include="Graph\Types\EditorInt.cs" />
+    <Compile Include="Graph\Types\EditorLabel.cs" />
+    <Compile Include="Graph\Types\EditorMatrix.cs" />
+    <Compile Include="Graph\Types\EditorRange.cs" />
+    <Compile Include="Graph\Types\EditorRect.cs" />
+    <Compile Include="Graph\Types\EditorString.cs" />
+    <Compile Include="Graph\Types\IUnityeditorDrawableType.cs" />
+    <Compile Include="Graph\Types\TypeEnum.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
