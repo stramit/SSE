@@ -285,8 +285,9 @@ namespace StrumpyShaderEditor
 					break;
 				}
 			}
-			
-			if( selected )
+				GUI.backgroundColor = Color.gray; // Texel - Blend, rather then hard set
+
+            if ( selected )
 			{
 				GUI.backgroundColor = Color.Lerp(GUI.backgroundColor,Color.green,0.5f); // Texel - Blend, rather then hard set
 			}
