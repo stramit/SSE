@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using System;
 using System.Collections;
 using System.Runtime.Serialization;
 
@@ -12,15 +13,22 @@ namespace StrumpyShaderEditor
 		public DefaultTextureType _defaultTexture;
 		
 		private Cubemap previewTexture;
-		
-		public Cubemap Cubemap
+
+        [DataMember]
+        string assetPath;   // for DataContract
+
+        public Cubemap Cubemap
 		{
-			get{ return previewTexture; }
+			get
+            {
+                SetTextureFromAssetPath();
+                return previewTexture;
+            }
 		}
 		
 		public override void Draw()
 		{
-			GUILayout.BeginVertical();
+            GUILayout.BeginVertical();
 			GUILayout.Label( "Default:" );
 			GUILayout.EndVertical();
 			
@@ -29,11 +37,16 @@ namespace StrumpyShaderEditor
 			GUILayout.EndVertical();
 			
 			GUILayout.BeginVertical();
-			previewTexture = (Cubemap)EditorGUILayout.ObjectField( previewTexture, typeof(Cubemap), new[] { GUILayout.Width (60), GUILayout.Height (60) });
+
+            var currentTexture = previewTexture;
+            previewTexture = (Cubemap)EditorGUILayout.ObjectField(Cubemap, typeof(Cubemap), true, new[] { GUILayout.Width (60), GUILayout.Height (60) });
 			GUILayout.EndVertical();
-		}
-		
-		public override InputType GetPropertyType()
+
+            if (currentTexture != previewTexture) SetAssetPath();
+
+        }
+
+        public override InputType GetPropertyType()
 		{
 			return InputType.TextureCube;
 		}
@@ -45,6 +58,23 @@ namespace StrumpyShaderEditor
 			result += "(\""+ PropertyDescription + "\", " + GetPropertyType().PropertyTypeString() + ") = \"" + _defaultTexture.ToString().ToLower() +"\" {}\n";
 			return result;
 		}
-		
-	}
+
+        // Save the asset path for DataContract
+        void SetAssetPath()
+        {
+            assetPath = null;
+            if (previewTexture != null)
+            {
+                assetPath = AssetDatabase.GetAssetPath(previewTexture);
+            }
+        }
+        // Load Asset at first time when previewTexture is null and has assert path
+        void SetTextureFromAssetPath()
+        {
+            if (!String.IsNullOrEmpty(assetPath) && previewTexture == null)
+            {
+                previewTexture = AssetDatabase.LoadAssetAtPath<Cubemap>(assetPath);
+            }
+        }
+    }
 }
