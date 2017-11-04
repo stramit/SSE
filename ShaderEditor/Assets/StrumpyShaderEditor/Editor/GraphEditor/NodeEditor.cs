@@ -21,15 +21,15 @@ namespace StrumpyShaderEditor
 		
 		private readonly List<Type> _serializableTypes = new List<Type>();
 
-		private readonly string _shaderEditorResourceDir;
-		private readonly string _autosavePath;
-		private readonly string _internalTempDir;
-		private readonly string _internalTempUnityPath;
-		private readonly string _tempShaderPathFull;
-		private readonly string _shaderTemplatePath;
-		private readonly string _graphsDir;
+		private string _shaderEditorResourceDir;
+		private string _autosavePath;
+		private string _internalTempDir;
+		private string _internalTempUnityPath;
+		private string _tempShaderPathFull;
+		private string _shaderTemplatePath;
+		private string _graphsDir;
 
-		private readonly PopupMenu _popupMenu;
+		private PopupMenu _popupMenu;
 
 		private const string TempShaderName = "TempShader";
 		
@@ -43,8 +43,13 @@ namespace StrumpyShaderEditor
 		private PreviewWindowInternal _previewWindow;
 		
 		private bool _shouldOpenPreviewWindow = true;
-		
-		protected NodeEditor( )
+
+		protected NodeEditor()
+		{
+			
+		}
+
+		private void OnEnable()
 		{
 			_shaderEditorResourceDir = Application.dataPath
 												+ Path.DirectorySeparatorChar
